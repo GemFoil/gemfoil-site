@@ -82,7 +82,7 @@ function GoldButton({ href, children, outline = false }) {
 function HeroVisual() {
   return (
     <div className="relative min-h-[520px] overflow-hidden lg:min-h-[650px]">
-      <img src={etbImage} alt="ETB collection background" className="absolute inset-0 h-full w-full object-cover opacity-35 blur-[1px] saturate-75" />
+
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_48%,rgba(245,158,11,0.32),transparent_28%),linear-gradient(90deg,rgba(0,0,0,1)_0%,rgba(0,0,0,0.92)_10%,rgba(0,0,0,0.54)_35%,rgba(0,0,0,0.12)_70%,rgba(0,0,0,0.75)_100%)]" />
       <div className="absolute right-[17%] top-[28%] h-80 w-80 rounded-full bg-amber-400/20 blur-[120px]" />
       <img src={binderImage} alt="GemFoil Toploader Binder" className="absolute bottom-0 right-[2%] h-[92%] w-auto max-w-none object-contain drop-shadow-[0_35px_90px_rgba(0,0,0,0.75)] md:right-[6%]" />
