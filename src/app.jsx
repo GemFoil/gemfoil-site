@@ -222,10 +222,9 @@ function Footer() {
     <footer className="border-t border-white/10 bg-black px-6 py-10 text-white lg:px-10">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
         <Logo small />
-        <div className="flex flex-wrap gap-3">
-          <GoldButton href={products[0].buyLink}><CreditCard className="h-4 w-4" /> eBay Store</GoldButton>
-          <GoldButton href={products[1].buyLink} outline><ExternalLink className="h-4 w-4" /> ETB Protector</GoldButton>
-        </div>
+       <GoldButton href="https://www.ebay.co.uk/cnt/ViewMessage?other_user_id=gemfoil&_caprdt=1&group_type=CORE&reference_type=LISTING">
+  <Headphones className="h-4 w-4" /> Contact Us on eBay!
+</GoldButton>
       </div>
       <p className="mx-auto mt-8 max-w-7xl text-sm text-white/40">© {new Date().getFullYear()} GemFoil. All Rights Reserved.</p>
     </footer>
