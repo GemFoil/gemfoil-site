@@ -223,7 +223,7 @@ function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
         <Logo small />
        <GoldButton href="https://www.ebay.co.uk/cnt/ViewMessage?other_user_id=gemfoil&_caprdt=1&group_type=CORE&reference_type=LISTING">
-  <Headphones className="h-4 w-4" /> Contact Us on eBay!
+  <Headphones className="h-4 w-4" /> Contact us on eBay!
 </GoldButton>
       </div>
       <p className="mx-auto mt-8 max-w-7xl text-sm text-white/40">© {new Date().getFullYear()} GemFoil. All Rights Reserved.</p>
