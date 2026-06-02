@@ -1,196 +1,150 @@
 import React from "react";
 import {
-  Archive, Award, Box, CreditCard, Droplets, ExternalLink,
-  Headphones, Lock, ShieldCheck, Star, Store, Truck,
+  Archive, CheckCircle2, ExternalLink, Gift, Heart, Lock, PackageCheck,
+  Search, ShieldCheck, Star, Store, Target, Truck, Droplets
 } from "lucide-react";
 
-const logoImage = "/Gemfoil logo no background.png";
-const binderImage = "/Binder.png";
-const etbImage = "/GemFoil_Branded_6.png";
+const logoImage = "/gemfoil-logo.png";
+const binderImage = "/toploader-binder.png";
+const etbImage = "/etb-protector.jpg";
+
 const products = [
   {
-    name: "Toploader Binder x360",
+    name: "Toploader Binder",
     price: "£24.99",
     image: binderImage,
-    description: "The ultimate storage solution for serious collectors. Holds up to 360 toploaded cards with premium protection.",
+    description: "Premium 9-pocket binder with toploader compatibility.",
     buyLink: "https://www.ebay.co.uk/itm/146851899616",
-    offer: "Includes 25 Toploaders & 100 Penny Sleeves",
-    features: ["360 Cards", "Waterproof", "Zip Closure"],
-    tag: "Best Seller",
+    features: ["Holds 360 cards", "Waterproof exterior", "Premium zip closure", "Includes 25 toploaders", "Includes 100 penny sleeves"],
   },
   {
-    name: "Premium Acrylic ETB Protector",
+    name: "ETB Protector",
     price: "£14.99",
     image: etbImage,
-    description: "8mm thick acrylic with strong magnets for the ultimate ETB protection and display.",
+    description: "Premium protection for your Elite Trainer Boxes.",
     buyLink: "https://www.ebay.co.uk/itm/146850308670",
-    offer: "Ordering more than 1? Message us on eBay for a discount!",
-    features: ["8mm Thick", "N52 Magnets", "UV Resistant"],
-    tag: "Display Ready",
+    features: ["8mm side walls", "N52 strong magnets", "UV resistant", "Scratch resistant", "Cleaning cloth included"],
   },
 ];
 
 const heroFeatures = [
-  { label: "Holds 360", sub: "Cards", icon: Archive },
-  { label: "Waterproof", sub: "Exterior", icon: Droplets },
-  { label: "Premium Zip", sub: "Closure", icon: Lock },
-  { label: "Free UK", sub: "Delivery", icon: Truck },
+  { icon: Archive, title: "Holds", subtitle: "360 Cards" },
+  { icon: Droplets, title: "Waterproof", subtitle: "Exterior" },
+  { icon: Lock, title: "Premium", subtitle: "Zip Closure" },
+  { icon: Truck, title: "Free UK", subtitle: "Delivery" },
 ];
 
 const trustItems = [
-  { title: "Premium Quality", text: "Built to last", icon: ShieldCheck },
-  { title: "Collector Focused", text: "Designed by collectors", icon: Award },
-  { title: "Secure Packaging", text: "Your order, protected", icon: Box },
-  { title: "Collector Support", text: "Contact via eBay", icon: Headphones },
+  { icon: Star, title: "1000+", subtitle: "Positive Feedback" },
+  { icon: Truck, title: "Free UK", subtitle: "Delivery" },
+  { icon: Gift, title: "25 Free", subtitle: "Toploaders" },
+  { icon: PackageCheck, title: "100 Free", subtitle: "Penny Sleeves" },
+  { icon: ShieldCheck, title: "Secure", subtitle: "eBay Checkout" },
 ];
 
-function Logo({ small = false }) {
+const whyItems = [
+  { icon: Star, title: "Premium Quality", text: "High quality materials built to protect your valuable collection." },
+  { icon: Target, title: "Collector Focused", text: "Designed by collectors, for collectors. Every detail is made with purpose." },
+  { icon: PackageCheck, title: "Secure Packaging", text: "Your order is packed with care to help it arrive in perfect condition." },
+  { icon: Heart, title: "Collector Support", text: "We're here to help with any questions. Real people, real support." },
+];
+
+function Logo({ footer = false }) {
+  return <img src={logoImage} alt="GemFoil" className={footer ? "w-36 sm:w-44" : "w-32 sm:w-44 md:w-52"} />;
+}
+
+function EbayBadge() {
   return (
-    <div className="inline-flex flex-col items-start">
-      <img src={logoImage} alt="GemFoil" className={small ? "h-auto w-32" : "h-auto w-40 md:w-48"} />
-      <p className="ml-2 mt-1 text-xs font-black text-amber-400 md:text-sm">Made for Collectors</p>
-    </div>
+    <span className="inline-flex items-center gap-1 font-black">
+      <span className="text-[#e53238]">e</span><span className="text-[#0064d2]">b</span><span className="text-[#f5af02]">a</span><span className="text-[#86b817]">y</span>
+    </span>
   );
 }
 
-function Stars() {
+function Button({ href, children, outline = false }) {
   return (
-    <div className="flex items-center gap-1">
-      {Array.from({ length: 5 }).map((_, index) => (
-        <Star key={index} className="h-5 w-5 fill-amber-400 text-amber-400" />
-      ))}
-    </div>
-  );
-}
-
-function GoldButton({ href, children, outline = false }) {
-  return (
-    <a
-      href={href}
-      target={href?.startsWith("http") ? "_blank" : undefined}
-      rel={href?.startsWith("http") ? "noreferrer" : undefined}
+    <a href={href} target={href?.startsWith("http") ? "_blank" : undefined} rel={href?.startsWith("http") ? "noreferrer" : undefined}
       className={outline
-        ? "inline-flex items-center justify-center gap-2 rounded-xl border border-amber-400/45 bg-black/20 px-6 py-3 text-sm font-black text-white shadow-lg shadow-black/30 transition hover:bg-amber-400 hover:text-black"
-        : "inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 px-7 py-3 text-sm font-black text-black shadow-lg shadow-amber-500/25 transition hover:brightness-110"
-      }
-    >
+        ? "inline-flex items-center justify-center gap-2 rounded-lg border border-[#c6902d] bg-black/20 px-7 py-4 text-sm font-black uppercase tracking-wide text-white transition hover:bg-[#c6902d]"
+        : "inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#d7a23c] to-[#b77b19] px-8 py-4 text-sm font-black uppercase tracking-wide text-white shadow-lg shadow-[#b77b19]/20 transition hover:brightness-110"}>
       {children}
     </a>
   );
 }
 
-function HeroVisual() {
+function TopBanner() {
   return (
-    <div className="relative min-h-[520px] overflow-hidden lg:min-h-[650px]">
-
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_48%,rgba(245,158,11,0.32),transparent_28%),linear-gradient(90deg,rgba(0,0,0,1)_0%,rgba(0,0,0,0.92)_10%,rgba(0,0,0,0.54)_35%,rgba(0,0,0,0.12)_70%,rgba(0,0,0,0.75)_100%)]" />
-      <div className="absolute right-[17%] top-[28%] h-80 w-80 rounded-full bg-amber-400/20 blur-[120px]" />
-      <img src={binderImage} alt="GemFoil Toploader Binder" className="absolute bottom-0 right-[2%] h-[92%] w-auto max-w-none object-contain drop-shadow-[0_35px_90px_rgba(0,0,0,0.75)] md:right-[6%]" />
-      <div className="absolute inset-y-0 left-0 w-[45%] bg-gradient-to-r from-black via-black/95 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#090909] to-transparent" />
+    <div className="bg-black px-4 py-3 text-center text-sm font-black uppercase tracking-wide text-white">
+      <span className="inline-flex items-center justify-center gap-2"><Truck className="h-4 w-4 text-[#d7a23c]" /> Free postage on all UK orders 🇬🇧</span>
     </div>
+  );
+}
+
+function Header() {
+  return (
+    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-[#fbfaf6]/95 backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 lg:px-8">
+        <Logo />
+        <nav className="hidden items-center gap-8 text-sm font-black uppercase tracking-wide text-neutral-950 lg:flex">
+          <a className="border-b-2 border-[#c6902d] pb-1 text-[#c6902d]" href="#home">Home</a>
+          <a className="transition hover:text-[#c6902d]" href="#binders">Binders</a>
+          <a className="transition hover:text-[#c6902d]" href="#etb-protectors">ETB Protectors</a>
+          <a className="transition hover:text-[#c6902d]" href="#about">About Us</a>
+          <a className="transition hover:text-[#c6902d]" href="#contact">Contact</a>
+        </nav>
+        <div className="flex items-center gap-4">
+          <Search className="hidden h-6 w-6 text-neutral-950 sm:block" />
+          <a href="https://www.ebay.co.uk/usr/gemfoil" target="_blank" rel="noreferrer" className="rounded-full bg-black px-4 py-3 text-sm text-white" aria-label="Find GemFoil on eBay"><EbayBadge /></a>
+        </div>
+      </div>
+    </header>
   );
 }
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-white/10 bg-black text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(245,158,11,0.08),transparent_26%)]" />
-      <div className="relative mx-auto grid max-w-7xl lg:grid-cols-[0.95fr_1.05fr]">
-        <div className="z-10 flex flex-col justify-center px-6 py-16 lg:px-10 lg:py-24">
-          <p className="mb-5 flex items-center gap-3 text-xs font-black uppercase tracking-[0.22em] text-amber-400">
-            <span className="h-px w-10 bg-amber-400" /> Premium Protection
-          </p>
-          <h1 className="max-w-2xl text-5xl font-black leading-[0.98] tracking-tight md:text-6xl lg:text-7xl">
-            Premium Protection For Serious Collectors
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-white/80">
-            Protect, store and display your collection with premium products designed specifically for Pokémon and TCG collectors.
-          </p>
+    <section id="home" className="relative overflow-hidden bg-black text-white">
+      <div className="absolute inset-0 opacity-30"><img src={etbImage} alt="" className="h-full w-full object-cover blur-[2px]" /></div>
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.98)_0%,rgba(0,0,0,0.92)_34%,rgba(0,0,0,0.38)_62%,rgba(0,0,0,0.78)_100%)]" />
+      <div className="absolute right-[18%] top-[36%] h-80 w-80 rounded-full bg-[#d7a23c]/20 blur-[130px]" />
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 lg:grid-cols-[0.85fr_1.15fr] lg:px-8 lg:py-20">
+        <div className="z-10">
+          <p className="text-sm font-black uppercase tracking-wide text-[#d7a23c]">Premium Protection</p>
+          <h1 className="mt-5 max-w-2xl text-5xl font-black leading-[1.04] tracking-tight sm:text-6xl">Premium Protection For Serious Collectors</h1>
+          <p className="mt-7 max-w-xl text-lg leading-8 text-white/80">Protect, store and display your collection with products designed specifically for Pokémon and TCG collectors.</p>
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            <Stars />
-            <span className="font-black">1,000+ Positive eBay Feedback</span>
+            <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-5 w-5 fill-[#d7a23c] text-[#d7a23c]" />)}</div>
+            <p className="font-bold">1,000+ Positive eBay Feedback</p>
           </div>
-          <p className="mt-3 text-lg font-black text-amber-400">Premium Protection. Fair Prices.</p>
-          <div className="mt-8 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4">
-            {heroFeatures.map(({ label, sub, icon: Icon }) => (
-              <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-center backdrop-blur">
-                <Icon className="mx-auto h-7 w-7 text-white" />
-                <p className="mt-3 text-sm font-black leading-tight">{label}</p>
-                <p className="text-xs font-semibold text-white/60">{sub}</p>
+          <p className="mt-4 text-xl font-black text-[#d7a23c]">Premium Protection. Fair Prices.</p>
+          <div className="mt-8 grid max-w-xl grid-cols-2 gap-0 sm:grid-cols-4">
+            {heroFeatures.map(({ icon: Icon, title, subtitle }) => (
+              <div key={title + subtitle} className="border-r border-white/20 px-4 text-center last:border-r-0">
+                <Icon className="mx-auto h-9 w-9 text-[#d7a23c]" />
+                <p className="mt-3 text-sm font-bold">{title}</p>
+                <p className="text-sm font-bold text-white/80">{subtitle}</p>
               </div>
             ))}
           </div>
-          <div className="mt-9 flex flex-wrap gap-4">
-            <GoldButton href="#collection"><Store className="h-4 w-4" /> Shop Collection</GoldButton>
-            <GoldButton href={products[0].buyLink} outline><CreditCard className="h-4 w-4" /> Buy on eBay</GoldButton>
-          </div>
+          <div className="mt-9"><Button href="#collection">Shop Collection <ExternalLink className="h-4 w-4" /></Button></div>
         </div>
-        <HeroVisual />
-      </div>
-    </section>
-  );
-}
-
-function ProductCard({ product }) {
-  return (
-    <article className="group overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] shadow-2xl shadow-black/30 backdrop-blur transition hover:border-amber-400/40">
-      <div className="relative aspect-[1.45/1] overflow-hidden bg-neutral-900">
-        <img src={product.image} alt={product.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-        {product.tag === "Best Seller" && (
-          <span className="absolute left-5 top-5 rounded-full bg-amber-400 px-3 py-1.5 text-xs font-black uppercase tracking-wide text-black">★ Best Seller</span>
-        )}
-      </div>
-      <div className="p-6">
-        <h3 className="text-2xl font-black tracking-tight text-white">{product.name}</h3>
-        <p className="mt-2 text-2xl font-black text-amber-400">{product.price}</p>
-        <p className="mt-3 text-sm leading-6 text-white/70">{product.description}</p>
-        <p className="mt-3 text-sm font-bold text-white">{product.offer}</p>
-        <div className="mt-5 flex flex-wrap gap-2">
-          {product.features.map((feature) => (
-            <span key={feature} className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs font-bold text-white/75">{feature}</span>
-          ))}
-        </div>
-        <a href={product.buyLink} target="_blank" rel="noreferrer" className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-amber-400/60 px-5 py-3 text-sm font-black text-amber-300 transition hover:bg-amber-400 hover:text-black">
-          Buy on eBay <ExternalLink className="h-4 w-4" />
-        </a>
-      </div>
-    </article>
-  );
-}
-
-function Collection() {
-  return (
-    <section id="collection" className="bg-[#090909] px-6 py-16 text-white lg:px-10">
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-center">
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-amber-400">Our Collection</p>
-          <h2 className="mt-5 text-4xl font-black tracking-tight md:text-5xl">Premium Products For Collectors</h2>
-          <p className="mt-5 max-w-sm leading-7 text-white/65">Carefully designed products to protect and showcase your collection.</p>
-          <a href="#collection" className="mt-8 inline-flex items-center justify-center rounded-xl border border-amber-400 px-7 py-3 text-sm font-black text-amber-300 transition hover:bg-amber-400 hover:text-black">View All Products</a>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2">
-          {products.map((product) => (
-            <ProductCard key={product.name} product={product} />
-          ))}
+        <div className="relative min-h-[430px] lg:min-h-[520px]">
+          <img src={binderImage} alt="GemFoil Toploader Binder" className="absolute bottom-0 left-[4%] h-[93%] w-auto rounded-2xl object-contain shadow-2xl shadow-black/70" />
+          <img src={etbImage} alt="GemFoil ETB Protector" className="absolute bottom-4 right-0 h-[52%] w-auto rounded-2xl object-contain shadow-2xl shadow-black/70" />
         </div>
       </div>
     </section>
   );
 }
 
-function TrustBar() {
+function TrustStrip() {
   return (
-    <section className="border-y border-white/10 bg-[#111111] px-6 py-6 text-white lg:px-10">
-      <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-4">
-        {trustItems.map(({ title, text, icon: Icon }) => (
-          <div key={title} className="flex items-center gap-4 border-white/10 md:border-r md:pr-6 last:border-r-0">
-            <Icon className="h-9 w-9 shrink-0 text-amber-400" />
-            <div>
-              <h3 className="font-black">{title}</h3>
-              <p className="text-sm text-white/60">{text}</p>
-            </div>
+    <section className="bg-[#f7f3ea] px-5 py-8 lg:px-8">
+      <div className="mx-auto grid max-w-7xl rounded-2xl border border-neutral-200 bg-[#fbfaf6] md:grid-cols-5">
+        {trustItems.map(({ icon: Icon, title, subtitle }) => (
+          <div key={title + subtitle} className="flex items-center gap-4 border-b border-neutral-200 p-6 md:border-b-0 md:border-r last:border-r-0">
+            <Icon className="h-11 w-11 shrink-0 text-[#c6902d]" />
+            <div><p className="text-lg font-black text-neutral-950">{title}</p><p className="text-sm font-semibold text-neutral-700">{subtitle}</p></div>
           </div>
         ))}
       </div>
@@ -198,19 +152,50 @@ function TrustBar() {
   );
 }
 
-function About() {
+function ProductCard({ product, index }) {
   return (
-    <section id="about" className="bg-[#090909] px-6 py-16 text-white lg:px-10">
-      <div className="mx-auto grid max-w-7xl gap-8 rounded-3xl border border-white/10 bg-white/[0.04] p-8 shadow-2xl shadow-black/30 lg:grid-cols-[0.55fr_1.45fr] lg:p-10">
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-amber-400">About GemFoil</p>
-          <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">Premium Protection. Fair Prices.</h2>
+    <article id={index === 0 ? "binders" : "etb-protectors"} className="grid overflow-hidden rounded-2xl border border-neutral-200 bg-[#fbfaf6] lg:grid-cols-[0.75fr_1fr]">
+      <div className="p-7">
+        <h3 className="text-3xl font-black uppercase leading-tight text-neutral-950">{product.name}</h3>
+        <p className="mt-4 max-w-xs text-sm leading-6 text-neutral-700">{product.description}</p>
+        <ul className="mt-6 space-y-3">
+          {product.features.map((feature) => (
+            <li key={feature} className="flex items-center gap-3 text-sm font-semibold text-neutral-800"><CheckCircle2 className="h-4 w-4 fill-[#c6902d] text-white" />{feature}</li>
+          ))}
+        </ul>
+        <p className="mt-8 text-4xl font-black text-neutral-950">{product.price}</p>
+        <a href={product.buyLink} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center justify-center gap-3 rounded-lg bg-black px-6 py-4 text-sm font-black uppercase tracking-wide text-white transition hover:bg-[#c6902d]"><EbayBadge /> on eBay <ExternalLink className="h-4 w-4" /></a>
+      </div>
+      <div className="flex items-center justify-center bg-[#f1eee6] p-5"><img src={product.image} alt={product.name} className="max-h-[360px] w-full rounded-xl object-contain" /></div>
+    </article>
+  );
+}
+
+function Collection() {
+  return (
+    <section id="collection" className="bg-[#f7f3ea] px-5 py-14 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 text-center">
+          <p className="text-sm font-black uppercase tracking-wide text-[#c6902d]">Our Collection</p>
+          <h2 className="mt-3 text-4xl font-black tracking-tight text-neutral-950">Premium Products For Collectors</h2>
+          <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-[#c6902d]" />
         </div>
-        <div className="space-y-4 text-sm leading-7 text-white/72 md:text-base">
-          <p>At GemFoil, we believe collectors shouldn't have to choose between premium protection and fair pricing.</p>
-          <p>We created GemFoil to offer high-quality storage and display solutions designed specifically for trading card collectors. Whether you're protecting your favourite Pokémon cards, building a master set, or displaying sealed products, our goal is simple: provide products that look premium, feel premium, and protect your collection properly.</p>
-          <p>GemFoil was built to bridge the gap by delivering collector-focused products at prices that make sense.</p>
-          <p className="font-black text-amber-400">Made for Collectors.</p>
+        <div className="grid gap-6 lg:grid-cols-2">{products.map((product, index) => <ProductCard key={product.name} product={product} index={index} />)}</div>
+      </div>
+    </section>
+  );
+}
+
+function WhyGemFoil() {
+  return (
+    <section id="about" className="bg-[#f7f3ea] px-5 pb-14 lg:px-8">
+      <div className="mx-auto max-w-7xl rounded-2xl border border-neutral-200 bg-[#fbfaf6] p-8">
+        <h2 className="text-center text-3xl font-black uppercase text-neutral-950">Why Choose GemFoil?</h2>
+        <div className="mx-auto mt-3 h-1 w-10 rounded-full bg-[#c6902d]" />
+        <div className="mt-9 grid gap-8 md:grid-cols-4">
+          {whyItems.map(({ icon: Icon, title, text }) => (
+            <div key={title} className="text-center"><Icon className="mx-auto h-12 w-12 text-[#c6902d]" /><h3 className="mt-4 text-lg font-black text-neutral-950">{title}</h3><p className="mt-3 text-sm leading-6 text-neutral-700">{text}</p></div>
+          ))}
         </div>
       </div>
     </section>
@@ -219,36 +204,27 @@ function About() {
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-black px-6 py-10 text-white lg:px-10">
-      <div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
-        <Logo small />
-       <GoldButton href="https://www.ebay.co.uk/cnt/ViewMessage?other_user_id=gemfoil&_caprdt=1&group_type=CORE&reference_type=LISTING">
-  <Headphones className="h-4 w-4" /> Contact us on eBay!
-</GoldButton>
+    <footer id="contact" className="bg-black px-5 py-12 text-white lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
+        <div><Logo footer /><p className="mt-5 max-w-xs text-sm leading-6 text-white/70">Premium protection for your TCG collection. Designed by collectors, for collectors.</p></div>
+        <div><h3 className="font-black uppercase text-[#d7a23c]">Shop</h3><div className="mt-4 space-y-2 text-sm text-white/75"><p>Binders</p><p>ETB Protectors</p><p>Accessories</p></div></div>
+        <div><h3 className="font-black uppercase text-[#d7a23c]">Info</h3><div className="mt-4 space-y-2 text-sm text-white/75"><p>About Us</p><p>Shipping</p><p>Returns</p><p>FAQs</p><p>Contact</p></div></div>
+        <div><h3 className="font-black uppercase text-[#d7a23c]">Find us on eBay</h3><a href="https://www.ebay.co.uk/usr/gemfoil" target="_blank" rel="noreferrer" className="mt-4 inline-block rounded-xl bg-white px-6 py-3 text-2xl"><EbayBadge /></a><p className="mt-4 text-sm text-white/75">1000+ Positive Feedback</p><div className="mt-2 flex gap-1">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-[#d7a23c] text-[#d7a23c]" />)}</div></div>
       </div>
-      <p className="mx-auto mt-8 max-w-7xl text-sm text-white/40">© {new Date().getFullYear()} GemFoil. All Rights Reserved.</p>
+      <p className="mx-auto mt-10 max-w-7xl border-t border-white/10 pt-6 text-sm text-white/50">© {new Date().getFullYear()} GemFoil. All rights reserved.</p>
     </footer>
   );
 }
 
 export default function App() {
   return (
-    <main className="min-h-screen bg-black font-sans">
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-black/82 px-6 py-5 backdrop-blur lg:px-10">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <Logo />
-          <nav className="hidden items-center gap-8 text-sm font-bold text-white/75 lg:flex">
-            <a href="#collection" className="hover:text-amber-400">Products</a>
-            <a href="#about" className="hover:text-amber-400">About</a>
-            <a href={products[0].buyLink} target="_blank" rel="noreferrer" className="hover:text-amber-400">eBay</a>
-          </nav>
-          <GoldButton href={products[0].buyLink}><CreditCard className="h-4 w-4" /> Buy on eBay</GoldButton>
-        </div>
-      </header>
+    <main>
+      <TopBanner />
+      <Header />
       <Hero />
+      <TrustStrip />
       <Collection />
-      <TrustBar />
-      <About />
+      <WhyGemFoil />
       <Footer />
     </main>
   );
