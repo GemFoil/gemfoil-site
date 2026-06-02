@@ -225,8 +225,7 @@ function CustomerFeedback() {
         </div>
       </div>
     </section>
-  );
-}
+ );
 }
 
 function WhyGemFoil() {
