@@ -42,13 +42,6 @@ const trustItems = [
   { icon: ShieldCheck, title: "Secure", subtitle: "eBay Checkout" },
 ];
 
-const reviews = [
-  { name: "James T.", rating: 5, text: "Absolutely brilliant quality. The binder feels premium and my cards are perfectly protected. Fast delivery too!" },
-  { name: "Sarah M.", rating: 5, text: "The ETB protector is stunning. Crystal clear and the magnets are incredibly strong. Worth every penny." },
-  { name: "Daniel K.", rating: 5, text: "Bought two binders and an ETB protector. GemFoil is the real deal — proper collector gear at a fair price." },
-  { name: "Emily R.", rating: 5, text: "Really impressed with the packaging and quality. You can tell these are made by people who actually collect." },
-];
-
 const whyItems = [
   { icon: Star, title: "Premium Quality", text: "High quality materials built to protect your valuable collection." },
   { icon: Target, title: "Collector Focused", text: "Designed by collectors, for collectors. Every detail is made with purpose." },
@@ -144,13 +137,15 @@ function Hero() {
 function TrustStrip() {
   return (
     <section className="bg-[#f7f3ea] px-5 py-8 lg:px-8">
-      <div className="mx-auto max-w-2xl rounded-2xl border border-neutral-200 bg-[#fbfaf6] md:grid-cols-3 grid">
-        {trustItems.map(({ icon: Icon, title, subtitle }) => (
-          <div key={title + subtitle} className="flex items-center gap-4 border-b border-neutral-200 p-6 md:border-b-0 md:border-r last:border-r-0">
-            <Icon className="h-11 w-11 shrink-0 text-[#c6902d]" />
-            <div><p className="text-lg font-black text-neutral-950">{title}</p><p className="text-sm font-semibold text-neutral-700">{subtitle}</p></div>
-          </div>
-        ))}
+      <div className="mx-auto flex justify-center">
+        <div className="grid w-full max-w-2xl grid-cols-1 rounded-2xl border border-neutral-200 bg-[#fbfaf6] md:grid-cols-3">
+          {trustItems.map(({ icon: Icon, title, subtitle }) => (
+            <div key={title + subtitle} className="flex items-center gap-4 border-b border-neutral-200 p-6 md:border-b-0 md:border-r last:border-r-0 last:border-b-0">
+              <Icon className="h-11 w-11 shrink-0 text-[#c6902d]" />
+              <div><p className="text-lg font-black text-neutral-950">{title}</p><p className="text-sm font-semibold text-neutral-700">{subtitle}</p></div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -223,7 +218,7 @@ function CustomerFeedback() {
         </div>
       </div>
     </section>
- );
+  );
 }
 
 function WhyGemFoil() {
