@@ -144,7 +144,7 @@ function Hero() {
 function TrustStrip() {
   return (
     <section className="bg-[#f7f3ea] px-5 py-8 lg:px-8">
-      <div className="mx-auto grid max-w-7xl rounded-2xl border border-neutral-200 bg-[#fbfaf6] md:grid-cols-3">
+      <div className="mx-auto max-w-2xl rounded-2xl border border-neutral-200 bg-[#fbfaf6] md:grid-cols-3 grid">
         {trustItems.map(({ icon: Icon, title, subtitle }) => (
           <div key={title + subtitle} className="flex items-center gap-4 border-b border-neutral-200 p-6 md:border-b-0 md:border-r last:border-r-0">
             <Icon className="h-11 w-11 shrink-0 text-[#c6902d]" />
