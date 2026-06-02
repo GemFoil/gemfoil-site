@@ -138,11 +138,14 @@ function TrustStrip() {
   return (
     <section className="bg-[#f7f3ea] px-5 py-8 lg:px-8">
       <div className="mx-auto flex justify-center">
-        <div className="grid w-full max-w-2xl grid-cols-1 rounded-2xl border border-neutral-200 bg-[#fbfaf6] md:grid-cols-3">
+        <div className="grid w-full max-w-3xl grid-cols-1 rounded-2xl border border-neutral-200 bg-[#fbfaf6] md:grid-cols-3">
           {trustItems.map(({ icon: Icon, title, subtitle }) => (
-            <div key={title + subtitle} className="flex items-center gap-4 border-b border-neutral-200 p-6 md:border-b-0 md:border-r last:border-r-0 last:border-b-0">
-              <Icon className="h-11 w-11 shrink-0 text-[#c6902d]" />
-              <div><p className="text-lg font-black text-neutral-950">{title}</p><p className="text-sm font-semibold text-neutral-700">{subtitle}</p></div>
+            <div key={title + subtitle} className="flex flex-col items-center justify-center gap-3 border-b border-neutral-200 p-8 text-center md:border-b-0 md:border-r last:border-r-0 last:border-b-0">
+              <Icon className="h-14 w-14 text-[#c6902d]" />
+              <div>
+                <p className="text-xl font-black text-neutral-950">{title}</p>
+                <p className="text-base font-semibold text-neutral-700">{subtitle}</p>
+              </div>
             </div>
           ))}
         </div>
