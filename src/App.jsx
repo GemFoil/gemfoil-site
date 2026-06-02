@@ -195,6 +195,13 @@ function Collection() {
 }
 
 function CustomerFeedback() {
+  const reviewsWithImages = [
+    { name: "James T.", rating: 5, text: "Absolutely brilliant quality. The binder feels premium and my cards are perfectly protected. Fast delivery too!", image: "/Binder_cust_2.jpg" },
+    { name: "Sarah M.", rating: 5, text: "The ETB protector is stunning. Crystal clear and the magnets are incredibly strong. Worth every penny.", image: "/etb_cust_1.jpg" },
+    { name: "Daniel K.", rating: 5, text: "Bought two binders and an ETB protector. GemFoil is the real deal — proper collector gear at a fair price.", image: "/etb_cust_3.jpg" },
+    { name: "Emily R.", rating: 5, text: "Really impressed with the packaging and quality. You can tell these are made by people who actually collect.", image: "/etb_cust.jpg" },
+  ];
+
   return (
     <section className="bg-[#f7f3ea] px-5 pb-14 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -204,18 +211,22 @@ function CustomerFeedback() {
           <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-[#c6902d]" />
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {reviews.map(({ name, rating, text }) => (
-            <div key={name} className="rounded-2xl border border-neutral-200 bg-[#fbfaf6] p-6">
-              <div className="flex gap-1 mb-4">{Array.from({ length: rating }).map((_, i) => <Star key={i} className="h-4 w-4 fill-[#c6902d] text-[#c6902d]" />)}</div>
-              <p className="text-sm leading-6 text-neutral-700">"{text}"</p>
-              <p className="mt-4 text-sm font-black text-neutral-950">{name}</p>
-              <p className="text-xs text-neutral-500">Verified eBay Buyer</p>
+          {reviewsWithImages.map(({ name, rating, text, image }) => (
+            <div key={name} className="rounded-2xl border border-neutral-200 bg-[#fbfaf6] overflow-hidden">
+              <img src={image} alt={`${name} collection`} className="w-full h-48 object-cover" />
+              <div className="p-6">
+                <div className="flex gap-1 mb-4">{Array.from({ length: rating }).map((_, i) => <Star key={i} className="h-4 w-4 fill-[#c6902d] text-[#c6902d]" />)}</div>
+                <p className="text-sm leading-6 text-neutral-700">"{text}"</p>
+                <p className="mt-4 text-sm font-black text-neutral-950">{name}</p>
+                <p className="text-xs text-neutral-500">Verified eBay Buyer</p>
+              </div>
             </div>
           ))}
         </div>
       </div>
     </section>
   );
+}
 }
 
 function WhyGemFoil() {
