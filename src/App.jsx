@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import React from "react";
 import {
   Archive, CheckCircle2, ExternalLink, Gift, Heart, Lock, PackageCheck,
@@ -302,6 +303,7 @@ function Footer() {
 export default function App() {
   return (
     <main>
+      <Analytics />
       <TopBanner />
       <Header />
       <Hero />
